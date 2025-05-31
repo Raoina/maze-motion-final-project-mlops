@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/final-mlops/mlruns/128573985563174785/51e7427f8e724c37a373c70bfc9be771/artifacts
+end_time: 1748722341082
+entry_point_name: ''
+experiment_id: '128573985563174785'
+lifecycle_stage: active
+run_id: 51e7427f8e724c37a373c70bfc9be771
+run_name: SVM
+run_uuid: 51e7427f8e724c37a373c70bfc9be771
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748722320750
+status: 3
+tags: []
+user_id: original store

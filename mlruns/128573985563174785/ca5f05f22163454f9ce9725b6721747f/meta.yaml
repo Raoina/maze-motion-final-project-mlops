@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/final-mlops/mlruns/128573985563174785/ca5f05f22163454f9ce9725b6721747f/artifacts
+end_time: 1748723063840
+entry_point_name: ''
+experiment_id: '128573985563174785'
+lifecycle_stage: active
+run_id: ca5f05f22163454f9ce9725b6721747f
+run_name: Random Forest
+run_uuid: ca5f05f22163454f9ce9725b6721747f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748723055579
+status: 3
+tags: []
+user_id: original store

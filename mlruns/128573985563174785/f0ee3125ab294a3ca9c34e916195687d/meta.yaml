@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/final-mlops/mlruns/128573985563174785/f0ee3125ab294a3ca9c34e916195687d/artifacts
+end_time: 1748723093383
+entry_point_name: ''
+experiment_id: '128573985563174785'
+lifecycle_stage: active
+run_id: f0ee3125ab294a3ca9c34e916195687d
+run_name: KNN
+run_uuid: f0ee3125ab294a3ca9c34e916195687d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748723088443
+status: 3
+tags: []
+user_id: original store

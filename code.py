@@ -8,7 +8,8 @@ import mlflow
 import mlflow.sklearn
 import matplotlib.pyplot as plt
 import os
-import joblib  # <--- استوردها هنا
+import joblib
+import numpy as np
 
 mlflow.set_experiment("hand_gesture_classification")
 
@@ -17,14 +18,14 @@ filtered_df = df[df['label'].isin(["one", "two_up", "three", "four"])]
 
 def preprocess_landmarks(row):
     wrist_x, wrist_y = row[0], row[1]
-    mid_finger_x, mid_finger_y = row[36], row[37]  
+    mid_finger_x, mid_finger_y = row[36], row[37]
     processed = []
-    for i in range(0, 63, 3):  
+    for i in range(0, 63, 3):
         x = row[i] - wrist_x
         y = row[i+1] - wrist_y
-        x /= (mid_finger_x - wrist_x) if (mid_finger_x - wrist_x) != 0 else 1  
+        x /= (mid_finger_x - wrist_x) if (mid_finger_x - wrist_x) != 0 else 1
         y /= (mid_finger_y - wrist_y) if (mid_finger_y - wrist_y) != 0 else 1
-        z = row[i+2]  
+        z = row[i+2]
         processed.extend([x, y, z])
     return processed
 
@@ -58,11 +59,15 @@ for name, model in models.items():
         mlflow.log_metric("precision", precision)
         mlflow.log_metric("recall", recall)
         mlflow.log_metric("f1_score", f1)
-        mlflow.sklearn.log_model(model, f"{name}_model")
 
-        # حفظ الموديل محليًا
+        mlflow.sklearn.log_model(model, f"{name}_model", input_example=X_train.head(1))
+
         joblib.dump(model, f"{name}_model.pkl")
         print(f"Saved {name} model locally as {name}_model.pkl")
+
+        dummy_input = np.random.rand(63).reshape(1, -1)
+        dummy_pred = model.predict(dummy_input)
+        print(f"Dummy input prediction for {name}: {dummy_pred}")
 
         metrics_summary[name] = {
             "Accuracy": acc,
@@ -72,14 +77,16 @@ for name, model in models.items():
         }
 
         plt.figure(figsize=(8, 5))
-        bars = plt.bar(metrics_summary[name].keys(), metrics_summary[name].values(), color=['skyblue', 'orange', 'green', 'red'])
+        bars = plt.bar(metrics_summary[name].keys(), metrics_summary[name].values(),
+                       color=['skyblue', 'orange', 'green', 'red'])
         plt.ylim(0, 1)
         plt.title(f"Metrics for {name}")
         plt.xlabel("Metric")
         plt.ylabel("Score")
         for bar in bars:
             yval = bar.get_height()
-            plt.text(bar.get_x() + bar.get_width()/2, yval + 0.01, f'{yval:.2f}', ha='center', va='bottom')
+            plt.text(bar.get_x() + bar.get_width()/2, yval + 0.01,
+                     f'{yval:.2f}', ha='center', va='bottom')
 
         plot_path = f"{name}_metrics_plot.png"
         plt.savefig(plot_path)
