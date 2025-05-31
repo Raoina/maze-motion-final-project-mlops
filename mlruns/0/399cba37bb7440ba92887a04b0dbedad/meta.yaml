@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/399cba37bb7440ba92887a04b0dbedad/artifacts
+deleted_time: 1748713388889
+end_time: 1748713335079
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 399cba37bb7440ba92887a04b0dbedad
+run_name: Random Forest
+run_uuid: 399cba37bb7440ba92887a04b0dbedad
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748713324706
+status: 4
+tags: []
+user_id: original store
