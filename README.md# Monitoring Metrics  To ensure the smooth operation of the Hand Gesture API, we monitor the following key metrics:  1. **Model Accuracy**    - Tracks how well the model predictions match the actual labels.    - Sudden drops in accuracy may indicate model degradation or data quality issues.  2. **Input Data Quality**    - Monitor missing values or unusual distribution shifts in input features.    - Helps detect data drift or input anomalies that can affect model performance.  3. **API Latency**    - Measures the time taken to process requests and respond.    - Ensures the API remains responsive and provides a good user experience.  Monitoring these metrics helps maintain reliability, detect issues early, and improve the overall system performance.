@@ -1,0 +1,17 @@
+# Monitoring Metrics
+
+To ensure the smooth operation of the Hand Gesture API, we monitor the following key metrics:
+
+1. **Model Accuracy**
+   - Tracks how well the model predictions match the actual labels.
+   - Sudden drops in accuracy may indicate model degradation or data quality issues.
+
+2. **Input Data Quality**
+   - Monitor missing values or unusual distribution shifts in input features.
+   - Helps detect data drift or input anomalies that can affect model performance.
+
+3. **API Latency**
+   - Measures the time taken to process requests and respond.
+   - Ensures the API remains responsive and provides a good user experience.
+
+Monitoring these metrics helps maintain reliability, detect issues early, and improve the overall system performance.
