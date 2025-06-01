@@ -4,9 +4,12 @@ scikit-learn==1.2.2
 joblib==1.2.0
 numpy==1.24.3
 seaborn==0.12.2
-fastapi==0.95.1
+fastapi==0.100.0
 uvicorn==0.22.0
 python-multipart==0.0.6
 mlflow==1.30.0
 pydantic==1.10.11
 typing-extensions==4.5.0
+prometheus_client
+prometheus_fastapi_instrumentator
+gunicorn==20.1.0
