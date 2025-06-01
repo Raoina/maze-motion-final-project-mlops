@@ -36,4 +36,4 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          npx @railway/cli up --service maze-motion-final-project-mlops --production
+          npx @railway/cli up --service maze-motion-final-project-mlops -- --production
