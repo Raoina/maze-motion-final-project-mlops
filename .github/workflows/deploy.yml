@@ -3,7 +3,7 @@ name: CI/CD to Railway
 on:
   push:
     branches:
-      - production  
+      - production
 
 jobs:
   build-and-deploy:
@@ -17,6 +17,11 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
       - name: Install dependencies
         run: |
@@ -32,5 +37,5 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          npm install -g railway
+          npm install -g @railway/cli
           railway up --production
