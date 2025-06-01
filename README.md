@@ -131,6 +131,31 @@ The **Random Forest** model was selected for deployment due to its superior accu
 ### Frontend
 
 - Follow the Quick Start instructions above to run the game in your browser.
+----
+
+## Monitoring Metrics
+
+In this project, we monitor three key metrics to ensure the system’s performance, data quality, and server health:
+
+### 1. Model-related metric: **Inference Latency**
+
+**Reasoning:**  
+Inference latency measures the time it takes for the model to process a request and return a prediction. Monitoring this helps us ensure the model responds quickly enough for real-time use cases and detect any slowdowns that might affect user experience or system performance.
+
+---
+
+### 2. Data-related metric: **Data Drift**
+
+**Reasoning:**  
+Data drift occurs when the statistical properties of the input data change over time compared to the training data. Monitoring data drift is essential to maintain model accuracy, as significant drift can lead to degraded performance and incorrect predictions. Early detection allows retraining or updating the model as needed.
+
+---
+
+### 3. Server-related metric: **CPU Usage**
+
+**Reasoning:**  
+CPU usage indicates how much processing power the server is consuming. Monitoring CPU usage helps identify resource bottlenecks and ensure the server can handle incoming requests efficiently without overloading, which could lead to crashes or slow responses.
+
 
 ### Backend
 
