@@ -1,13 +1,18 @@
 async function getPredictedLabel(processed_t) {
-  // TODO: Call your model's api here
-  // and return the predicted label
-  // Possible labels: "up", "down", "left", "right", null
-  // null means stop & wait for the next gesture
-  // For now, we will return a random label
-  const labels = ["up", "down", "left", "right"];
-  const response = await fetch("https://maze-motion-final-project-mlops-production.up.railway.app/" + query);
-  const randomIndex = Math.floor(Math.random() * labels.length);
-  const randomLabel = labels[randomIndex];
-  console.log("Predicted label:", randomLabel);
-  return randomLabel;
+  const response = await fetch("https://maze-motion-final-project-mlops-production.up.railway.app/predict", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ features: processed_t }),
+  });
+
+  if (!response.ok) {
+    console.error("API error:", response.statusText);
+    return null;
+  }
+
+  const data = await response.json();
+  console.log("Predicted gesture:", data.gesture);
+  return data.gesture;  
 }
