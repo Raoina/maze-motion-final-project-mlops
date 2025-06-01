@@ -23,21 +23,19 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r req.txt
+          pip install -r requirements.txt  # تأكد من اسم الملف
 
-      # Optional: Add test step here
+      # Optional test step
       # - name: Run tests
-      #   run: |
-      #     pytest
+      #   run: pytest
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
 
       - name: Deploy to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: |
-          npm install -g @railway/cli
-          railway up -- --production
-
-
+        run: railway deploy production
