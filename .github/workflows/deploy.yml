@@ -38,4 +38,4 @@ jobs:
       - name: Deploy to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: railway deploy production
+        run: railway deploy maze-motion-final-project-mlops
