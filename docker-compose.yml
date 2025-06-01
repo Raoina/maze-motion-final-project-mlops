@@ -1,11 +1,12 @@
+version: "3.8"
 services:
   app:
     build: .
     ports:
-      - "8000:8000"
+      - "8010:8010" 
     depends_on:
       - prometheus
-    stop_grace_period: 30s  
+    stop_grace_period: 30s
 
   prometheus:
     image: prom/prometheus
@@ -23,4 +24,3 @@ services:
 
 volumes:
   grafana-storage:
-

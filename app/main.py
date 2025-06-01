@@ -7,14 +7,14 @@ from app.schemas import GestureRequest, GestureResponse
 
 app = FastAPI()
 
-# Prometheus metrics
-MODEL_ACCURACY = Gauge('model_accuracy', 'Accuracy of the model predictions') 
-MISSING_VALUES_COUNT = Counter('missing_values_total', 'Total missing input values detected')
-REQUEST_LATENCY = Histogram('request_latency_seconds', 'Latency of API requests in seconds') 
-# auto expose /metrics endpoint
+# Instrument Prometheus metrics on the app and expose /metrics endpoint automatically
 Instrumentator().instrument(app).expose(app)
 
-def update_model_accuracy(new_accuracy):
+MODEL_ACCURACY = Gauge('model_accuracy', 'Accuracy of the model predictions')
+MISSING_VALUES_COUNT = Counter('missing_values_total', 'Total missing input values detected')
+REQUEST_LATENCY = Histogram('request_latency_seconds', 'Latency of API requests in seconds')
+
+def update_model_accuracy(new_accuracy: float):
     MODEL_ACCURACY.set(new_accuracy)
 
 @app.middleware("http")
@@ -34,7 +34,6 @@ async def predict(request: GestureRequest):
     missing_count = sum(1 for v in request.features if v is None)
     if missing_count > 0:
         MISSING_VALUES_COUNT.inc(missing_count)
-
+    
     prediction = predict_hand_gesture(request.features)
-
     return GestureResponse(gesture=prediction)

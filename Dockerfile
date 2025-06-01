@@ -1,16 +1,18 @@
-# Use tiangolo image that already has FastAPI, Uvicorn, Gunicorn setup
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.10-slim
+# Use official Python slim image
+FROM python:3.10-slim
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy requirements and install
+# Copy requirements file and install dependencies
 COPY req.txt .
 
 RUN pip install --no-cache-dir -r req.txt
 
-# Copy the application code
+# Copy the rest of the application code
 COPY . .
 
-ENV MODULE_NAME=app.main
+EXPOSE 8010
 
+# Run the application with uvicorn
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8010"]

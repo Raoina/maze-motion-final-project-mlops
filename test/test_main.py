@@ -1,6 +1,5 @@
 from fastapi.testclient import TestClient
-from app.main import app  # تأكد إن ملف main.py موجود في فولدر app وفيه متغير app
-
+from app.main import app  
 client = TestClient(app)
 
 def test_read_root():
