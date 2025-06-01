@@ -38,5 +38,6 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           npm install -g @railway/cli
-          railway up -- --production
+          railway up --service backend -- --production
+
 
